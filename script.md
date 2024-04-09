@@ -8,7 +8,7 @@ For any $y:S\to\{0,1\}$ given in addition, the tuple $(S, X, x, y)$ is called la
 
 - For any $n\in\mathbb{N}_0$, the instance of the **Separability problem** is to decide if there exists a $\theta\in\Theta$ such that
 
-$$R(\theta)\subseteq m$$
+$$R(\theta)\leq m$$
 
 $$\begin{array}{c}
 \forall s\in y^{-1}(1) : f_\theta(x_s)>0\\
@@ -55,7 +55,7 @@ $$\lambda R(\theta'')+0 = \frac{R(\theta'')}{(|S|+1)R(\hat{\theta})}$$
 
 
 
-Def: Let $\Gamma = \{(v_0, v_1)\in 2^V\times 2^V |v_0\cap v_1 = \emptyset\}$ and $\Theta\in 2^\Gamma$. For any $\theta\in\Theta$, the $f_\theta:\{0,1\}^V\to\{0,1\}$ such that $\forall x\in\{0,1\}^V$
+Def: Let $\Gamma = \left\{(v_0, v_1)\in 2^V\times 2^V : v_0\cap v_1 = \emptyset\right\}$ and $\Theta\in 2^\Gamma$. For any $\theta\in\Theta$, the $f_\theta:\{0,1\}^V\to\{0,1\}$ such that $\forall x\in\{0,1\}^V$
 
 $$f(x) = \bigvee\limits_{(V_0, V_1)\in\theta} \prod\limits_{v\in V_0}(1-x_v)\prod\limits_{w\in V_1}x_w$$
 
