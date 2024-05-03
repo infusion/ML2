@@ -125,7 +125,7 @@ Thus, $f_\theta$ decides the Haussler Data correctly.
 
 Secondly, $R(\theta)\leq R_e(\theta) = |\Sigma'|\leq m$.
 
-Hence, $f\theta$ solves the instance of Separability.
+Hence, $f_\theta$ solves the instance of Separability.
 
 "$\Leftarrow$" Let $\theta\in\Theta$ be a DNF such that $R(\theta)\leq m$ and such that $\forall s\in S: f_\theta(x^s) = y_s$.
 
@@ -183,5 +183,68 @@ $\forall \hat{x}\in X :f_{\theta}(\hat{x})\leq 0\lor f_{\theta'}(\hat{x})\leq 0$
 3) For any $L:\mathbb{R}\times \{0,1\}\to\mathbb{R}_0^+$ called a **loss function** and any $\lambda\in\mathbb{R}_0^+$, the instance of the **supervised partial learning problem** has the form
 
 $\inf\limits_{\theta, \theta'\in\Theta} \lambda(R(\theta) + R(\theta')) + \frac{1}{|y^{-1}(1)|}\sum\limits_{s\in y^{-1}()1} L(f_\theta(x^s), 1) + \frac{1}{|y^{-1}(0)|}\sum\limits_{s\in y^{-1}(0)} L(f_\theta(x^s), 1)$
+
+
+
+
+
+
+Recap:
+
+Def: $V\neq\emptyset$ finite. $\Gamma = \{(v_0, v_1)\subseteq 2^V\times 2^V | V_0\cap V_1=\emptyset\}$
+
+$\Theta=2^\Gamma$. For any $\theta\in\Theta$, the DNF defined by $\theta$ is the form 
+
+$$\bigvee\limits_{(v_0,v_1)\in\theta}\prod\limits_{v\in V_0}(1-x_v)\prod\limits_{w\in V_1}x_w$$
+
+Def: For any labeled data $(S, X; x, y)$ with $x=\{0,1\}^V$, $\Theta\neq\emptyset$ and family $f:\Theta:R^X$ and any $R:\Theta\to\mathbb{R}^+_0$, the instance of the PARTIAL SEPARABILITY PROBLEM is to decide if there exists $\theta, \theta'\in\Theta$ such taht the following condition hold:
+
+$$R(\theta) + R(\theta')\leq m$$
+
+$$\forall s\in y^{-1}(1) : f_\theta(x_s) > 0$$
+
+$$\forall s\in y^{-1}(0) : f_{\theta'}(x_s) > 0$$
+
+$$\forall \hat{x}\in X : f_\theta(\hat{x})\leq 0\lor f_{\theta'}(\hat{x})\leq 0$$
+
+
+Lemma: For any instance $(S', \Sigma, m)$ of SET-COVER, consider the instance of PARTIAL-SEPARABILITY wrt. the family $f:\Theta\to\mathbb{R}^\Sigma$ of DNFs, $R\in\{R_l, R_d\}$ (length und depth regularizer), the Haussler Data $(S, X, x, y)$ and the bound $2m$ (for $R_l$) and $m+1$ (for $R_d$).
+
+1) Then, the function $h:2^\Sigma\to\Theta^2$ such that for any $\Sigma'\subset\Sigma, h(\Sigma')=(\theta,\theta')$ suh that the two conditions hold:
+
+$$\theta:= \{(\emptyset, \{\sigma\}):\sigma\in\Sigma'\}$$
+
+$$\theta':= \{(\Sigma', \emptyset)\}$$
+
+has the following properties:
+
+a) $h(\Sigma')$ is computable in time $O(\text{poly}(|\Sigma'|)$
+
+b) If $\Sigma'$ is a solution to the instance of SET COVER, then $(\theta, \theta')$ (two DNFs) is a solution to the instance of PARTIAL-SEPARABILITY.
+
+2) Moreover, any function $g:\Theta^2\to2^\Sigma$ such that for any $\theta,\theta'\in\Theta$:
+
+$$g(\theta,\theta') = \arg\min\limits_{\{\Sigma'=\Sigma_0',\Sigma_1'\}} |\Sigma'|$$
+
+with $\Sigma_0' = \bigcup\limits_{(\Sigma_0,\Sigma_1)\in\Theta'}\Sigma_0$, (all negated variables in $\theta'$)
+
+$\Sigma_1' \in\{\Sigma_1\subseteq\Sigma | (\emptyset, \Sigma_1)\in\Theta\}$
+
+
+has the following properties:
+
+a) $g(\theta, \theta')$ is computable in time $O(\text{poly}(R_l(\theta)+R_l(\theta')))$
+
+b) If $(\theta, \theta')$ is a solution to the instance of PARTIAL-SEPARATION, then $g(\theta, \theta')$ is a solution to the instance of SET-COVER.
+
+----------
+
+Let $s\in  S$ such that $y_s=0$ (same as $s\in S'$). Then, $f_{\theta'}(x_s)=\bigvee\limits_{\sigma\in\Sigma'}(1-x_s(\sigma))$.
+
+$\Sigma'$  solves SET-COVER.$\Rightarrow\exists\sigma\in\Sigma':s\in\Sigma$. $\Rightarrow x_s(\sigma)=0$ (by constr. of Haussler Data). Thus, $f_{\theta'}(x_s)=1$. Moreover $f_\theta(1^\Sigma)=0$.
+
+Furthermore: $f_\theta(\hat{x})=\prod\limits_{\sigma\in\Sigma'}\hat{x}(\sigma)$
+
+
 
 
